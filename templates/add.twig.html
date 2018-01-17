@@ -1,0 +1,89 @@
+{% extends 'base.twig.html' %}
+
+{% block title %}Add Car{% endblock %}
+
+{% block head_script %}
+    <script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            try {
+                var carquery = new CarQuery();
+
+                carquery.init();
+                //carquery.init('2000', 'dodge', 'Viper', 11636);
+                carquery.setFilters( {sold_in_us:true} );
+                carquery.initYearMakeModelTrim('year', 'make', 'model', 'na');
+            }
+            catch(e) {
+                $('#make_model_help').removeClass('d-none');
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8 offset-2">
+            <h1 class="pt-3">Add Car</h1>
+            <hr>
+
+            {% if errors.year %}
+                <p class="text-danger">There was an error submitting the form. Please check the fields and contact us if the problem persists.</p>
+            {% endif %}
+
+            <form action="{{path_for('add')}}" method="POST">
+                <h4>Make and model</h4>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col">
+                            <select name="year" id="year" class="custom-select"></select>
+                        </div>
+                        <div class="col">
+                            <select name="make" id="make" class="custom-select"></select>
+                        </div>
+                        <div class="col">
+                            <select name="model" id="model" class="custom-select"></select>
+                        </div>
+                    </div>
+                    <small id="make_model_help" class="d-none form-text"><mark>Not working? Make sure you disable your ad-blocker for this site.</mark></small>
+                </div>
+
+                <h4>Vehicle ID Number</h4>
+                <div class="form-group">
+                    <input type="text" name="vin" value="{{vin}}" placeholder="VIN" class="form-control">
+                    {% if errors.vin.invalid %}<small class="form-text text-danger">Must be a 17-digit VIN</small>{% endif %}
+                </div>
+
+                <h4>Price</h4>
+                <div class="form-group">
+                    <input type="text" name="price" value="{{price}}" placeholder="Price" class="form-control"> 
+                    {% if errors.price.invalid %}<small class="form-text text-danger">Must be a valid number</small>{% endif %}
+                </div>
+
+                <h4>Add Photo</h4>
+                <div class="form-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile" name="photo">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                        {% if errors.photo.invalid %}<small class="form-text text-danger">Must be an image file</small>{% endif %}
+                    </div>
+                </div>
+                
+                <h4>Key Number</h4>
+                <div class="form-group">
+                    <input type="text" name="keyNumber" value="{{keyNumber}}" placeholder="Key Number" class="form-control">
+                    {% if errors.keyNumber %}<small class="form-text text-danger">Must be a valid number</small>{% endif %}
+                </div>
+                    
+                <div class="form-group mt-5">
+                    <input type="submit" value="Add Car" class="btn btn-primary px-5">
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

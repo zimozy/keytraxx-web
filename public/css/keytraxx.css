@@ -1,0 +1,19 @@
+div#navbar {
+    padding: 15px 15px 15px 30px;
+    background-color: #f0f0f0;
+}
+/* 
+div#navbar * {
+    margin: 0;  
+}
+
+div#navbar h3 {
+    display: inline;
+} */
+/* 
+.navbarH {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    line-height: 1; 
+} */

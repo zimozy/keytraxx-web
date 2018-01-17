@@ -1,0 +1,6 @@
+keytraxx:
+  image: keytraxx
+  ports:
+    - "1234:80"
+  volumes:
+    - ./public:/var/www

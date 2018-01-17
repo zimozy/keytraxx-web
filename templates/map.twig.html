@@ -1,0 +1,51 @@
+{% extends 'base.twig.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block head_style %}
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+            * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+{% endblock %}
+
+{% block navbar %}
+    <div class="col-sm-auto">
+        <a href="{{path_for('add')}}" class="btn btn-primary" role="button"><i class="fa fa-car" aria-hidden="true"></i> Add Car</a>
+    </div>
+    <div class="col">
+        <form action=""><input type="text" class="form-control" placeholder="Search..."></form>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {# <div id="map"></div> #}
+        <h1>Welcome to My Awesome App</h1>
+    Status:<div id="sign-in-status"></div>
+    Sign in:<div id="sign-in"></div>
+    Details:<div id="account-details"></div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 35.226944, lng: -80.843333},
+                mapTypeControl: false,
+                disableDefaultUI: true,
+                zoom: 16
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAog6OksKldQKb7VFU8ohOA-VRoQuw-Mwg&callback=initMap" async defer></script>
+{% endblock %}
