@@ -3,10 +3,11 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 use Respect\Validation\Validator as respect;
+use Firebase\FirebaseLib;
 
 const FIREBASE_URL = 'https://key-traxx.firebaseio.com/';
 const FIREBASE_TOKEN = 'AIzaSyCVa7eKwNGKNniq9F3U_t91mybw3hgwUM4';
-const FIREBASE_PATH = '/';
+const FIREBASE_PATH = 'cars';
 
 
 $app->get("/", function (Request $request, Response $response) {
@@ -43,7 +44,7 @@ $app->post("/add", function (Request $request, Response $response) {
     $ch = curl_init("https://www.carqueryapi.com/api/0.3/?callback=?&cmd=getModels&make=" . $fields['make'] . "&year=" . $fields['year'] . "&sold_in_us=1");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_HEADER, false);
-    $result = curl_exec($ch);    
+    $result = curl_exec($ch);
     curl_close($ch);
 
     $regex = '"model_name":"' . $fields['model'] . '"';
@@ -61,7 +62,8 @@ $app->post("/add", function (Request $request, Response $response) {
 
     validate($fields,
         'price',
-        respect::optional(respect::numeric())->validate($fields['price']),
+        respect::optional(respect::numeric())
+            ->validate(str_replace(',', '', $fields['price'])), //ignore  commas
         'invalid');
     
     validate($fields,
@@ -83,21 +85,29 @@ $app->post("/add", function (Request $request, Response $response) {
 
     } else {
 
-        // $firebase = new \Firebase\FirebaseLib(FIREBASE_URL, FIREBASE_TOKEN);
+        $firebase = new \Firebase\FirebaseLib(FIREBASE_URL);
 
         // // --- storing an array ---
-        // $test = array(
-        //     "foo" => "bar",
-        //     "i_love" => "lamp",
-        //     "id" => 42
-        // );
-        // $dateTime = new DateTime();
-        // $firebase->set(FIREBASE_PATH . '/' . $dateTime->format('c'), $test);
+        $data = array(
+            "year" => $fields['year'],
+            "make" => $fields['make'],
+            "model" => $fields['model'],
+            "vin"   => $fields['vin'],
+            "price" => $fields['price'],
+            "photo" => "N/A",
+            "key"   => $fields['keyNumber']
+        );
+        $dateTime = new DateTime();
 
-        // // --- storing a string ---
-        // $firebase->set(FIREBASE_PATH . '/name/contact001', "John Doe");
+        var_dump($firebase->push('cars/', $data));
 
-        // // --- reading the stored string ---
+// var_dump(FIREBASE_PATH);
+// $dateTime = new DateTime();
+// var_dump($firebase->set(DEFAULT_PATH . '/' . $dateTime->format('c'), $test));
+        // --- storing a string ---
+        // $result = $firebase->set(FIREBASE_PATH . '/name/contact001', "John Doe");
+
+        // --- reading the stored string ---
         // $name = $firebase->get(FIREBASE_PATH . '/name/contact001');
     }
     

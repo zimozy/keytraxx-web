@@ -11,8 +11,8 @@ class __TwigTemplate_7fc2d5ebad7d474632e670347a3567d0a19c0004d725ea93a3e97fe3387
         $this->parent = $this->loadTemplate("base.twig.html", "add.twig.html", 1);
         $this->blocks = array(
             'title' => array($this, 'block_title'),
-            'head_script' => array($this, 'block_head_script'),
-            'content' => array($this, 'block_content'),
+            'body_script' => array($this, 'block_body_script'),
+            'content_with_margin' => array($this, 'block_content_with_margin'),
         );
     }
 
@@ -33,7 +33,7 @@ class __TwigTemplate_7fc2d5ebad7d474632e670347a3567d0a19c0004d725ea93a3e97fe3387
     }
 
     // line 5
-    public function block_head_script($context, array $blocks = array())
+    public function block_body_script($context, array $blocks = array())
     {
         // line 6
         echo "    <script type=\"text/javascript\" src=\"http://www.carqueryapi.com/js/carquery.0.3.4.js\"></script>
@@ -47,37 +47,36 @@ class __TwigTemplate_7fc2d5ebad7d474632e670347a3567d0a19c0004d725ea93a3e97fe3387
                 //carquery.init('2000', 'dodge', 'Viper', 11636);
                 carquery.setFilters( {sold_in_us:true} );
                 carquery.initYearMakeModelTrim('year', 'make', 'model', 'na');
-            }
-            catch(e) {
-                \$('#make_model_help').removeClass('d-none');
+            } catch(e) {
+                \$('#make_model_help').removeClass('d-none'); //Show a message that they need to disable ad blockers
             }
         });
     </script>
 ";
     }
 
-    // line 25
-    public function block_content($context, array $blocks = array())
+    // line 24
+    public function block_content_with_margin($context, array $blocks = array())
     {
-        // line 26
+        // line 25
         echo "
-<div class=\"container-fluid\">
+
     <div class=\"row\">
         <div class=\"col-sm-8 offset-2\">
             <h1 class=\"pt-3\">Add Car</h1>
             <hr>
 
             ";
-        // line 33
+        // line 32
         if (twig_get_attribute($this->env, $this->getSourceContext(), ($context["errors"] ?? null), "year", array())) {
-            // line 34
+            // line 33
             echo "                <p class=\"text-danger\">There was an error submitting the form. Please check the fields and contact us if the problem persists.</p>
             ";
         }
-        // line 36
+        // line 35
         echo "
             <form action=\"";
-        // line 37
+        // line 36
         echo twig_escape_filter($this->env, $this->env->getExtension('Slim\Views\TwigExtension')->pathFor("add"), "html", null, true);
         echo "\" method=\"POST\">
                 <h4>Make and model</h4>
@@ -93,35 +92,35 @@ class __TwigTemplate_7fc2d5ebad7d474632e670347a3567d0a19c0004d725ea93a3e97fe3387
                             <select name=\"model\" id=\"model\" class=\"custom-select\"></select>
                         </div>
                     </div>
-                    <small id=\"make_model_help\" class=\"d-none form-text\"><mark>Not working? Make sure you disable your ad-blocker for this site.</mark></small>
+                    <small id=\"make_model_help\" class=\"d-none form-text\"><mark>Not working? Check that your ad blocker is disabled for this site.</mark></small>
                 </div>
 
                 <h4>Vehicle ID Number</h4>
                 <div class=\"form-group\">
                     <input type=\"text\" name=\"vin\" value=\"";
-        // line 56
+        // line 55
         echo twig_escape_filter($this->env, ($context["vin"] ?? null), "html", null, true);
         echo "\" placeholder=\"VIN\" class=\"form-control\">
                     ";
-        // line 57
+        // line 56
         if (twig_get_attribute($this->env, $this->getSourceContext(), twig_get_attribute($this->env, $this->getSourceContext(), ($context["errors"] ?? null), "vin", array()), "invalid", array())) {
             echo "<small class=\"form-text text-danger\">Must be a 17-digit VIN</small>";
         }
-        // line 58
+        // line 57
         echo "                </div>
 
                 <h4>Price</h4>
                 <div class=\"form-group\">
                     <input type=\"text\" name=\"price\" value=\"";
-        // line 62
+        // line 61
         echo twig_escape_filter($this->env, ($context["price"] ?? null), "html", null, true);
         echo "\" placeholder=\"Price\" class=\"form-control\"> 
                     ";
-        // line 63
+        // line 62
         if (twig_get_attribute($this->env, $this->getSourceContext(), twig_get_attribute($this->env, $this->getSourceContext(), ($context["errors"] ?? null), "price", array()), "invalid", array())) {
             echo "<small class=\"form-text text-danger\">Must be a valid number</small>";
         }
-        // line 64
+        // line 63
         echo "                </div>
 
                 <h4>Add Photo</h4>
@@ -130,26 +129,26 @@ class __TwigTemplate_7fc2d5ebad7d474632e670347a3567d0a19c0004d725ea93a3e97fe3387
                         <input type=\"file\" class=\"custom-file-input\" id=\"customFile\" name=\"photo\">
                         <label class=\"custom-file-label\" for=\"customFile\">Choose file</label>
                         ";
-        // line 71
+        // line 70
         if (twig_get_attribute($this->env, $this->getSourceContext(), twig_get_attribute($this->env, $this->getSourceContext(), ($context["errors"] ?? null), "photo", array()), "invalid", array())) {
             echo "<small class=\"form-text text-danger\">Must be an image file</small>";
         }
-        // line 72
+        // line 71
         echo "                    </div>
                 </div>
                 
                 <h4>Key Number</h4>
                 <div class=\"form-group\">
                     <input type=\"text\" name=\"keyNumber\" value=\"";
-        // line 77
+        // line 76
         echo twig_escape_filter($this->env, ($context["keyNumber"] ?? null), "html", null, true);
         echo "\" placeholder=\"Key Number\" class=\"form-control\">
                     ";
-        // line 78
+        // line 77
         if (twig_get_attribute($this->env, $this->getSourceContext(), ($context["errors"] ?? null), "keyNumber", array())) {
             echo "<small class=\"form-text text-danger\">Must be a valid number</small>";
         }
-        // line 79
+        // line 78
         echo "                </div>
                     
                 <div class=\"form-group mt-5\">
@@ -159,7 +158,7 @@ class __TwigTemplate_7fc2d5ebad7d474632e670347a3567d0a19c0004d725ea93a3e97fe3387
             </form>
         </div>
     </div>
-</div>
+
 ";
     }
 
@@ -175,7 +174,7 @@ class __TwigTemplate_7fc2d5ebad7d474632e670347a3567d0a19c0004d725ea93a3e97fe3387
 
     public function getDebugInfo()
     {
-        return array (  153 => 79,  149 => 78,  145 => 77,  138 => 72,  134 => 71,  125 => 64,  121 => 63,  117 => 62,  111 => 58,  107 => 57,  103 => 56,  81 => 37,  78 => 36,  74 => 34,  72 => 33,  63 => 26,  60 => 25,  39 => 6,  36 => 5,  30 => 3,  11 => 1,);
+        return array (  152 => 78,  148 => 77,  144 => 76,  137 => 71,  133 => 70,  124 => 63,  120 => 62,  116 => 61,  110 => 57,  106 => 56,  102 => 55,  80 => 36,  77 => 35,  73 => 33,  71 => 32,  62 => 25,  59 => 24,  39 => 6,  36 => 5,  30 => 3,  11 => 1,);
     }
 
     public function getSourceContext()
@@ -184,7 +183,7 @@ class __TwigTemplate_7fc2d5ebad7d474632e670347a3567d0a19c0004d725ea93a3e97fe3387
 
 {% block title %}Add Car{% endblock %}
 
-{% block head_script %}
+{% block body_script %}
     <script type=\"text/javascript\" src=\"http://www.carqueryapi.com/js/carquery.0.3.4.js\"></script>
 
     <script type=\"text/javascript\">
@@ -196,17 +195,16 @@ class __TwigTemplate_7fc2d5ebad7d474632e670347a3567d0a19c0004d725ea93a3e97fe3387
                 //carquery.init('2000', 'dodge', 'Viper', 11636);
                 carquery.setFilters( {sold_in_us:true} );
                 carquery.initYearMakeModelTrim('year', 'make', 'model', 'na');
-            }
-            catch(e) {
-                \$('#make_model_help').removeClass('d-none');
+            } catch(e) {
+                \$('#make_model_help').removeClass('d-none'); //Show a message that they need to disable ad blockers
             }
         });
     </script>
 {% endblock %}
 
-{% block content %}
+{% block content_with_margin %}
 
-<div class=\"container-fluid\">
+
     <div class=\"row\">
         <div class=\"col-sm-8 offset-2\">
             <h1 class=\"pt-3\">Add Car</h1>
@@ -230,7 +228,7 @@ class __TwigTemplate_7fc2d5ebad7d474632e670347a3567d0a19c0004d725ea93a3e97fe3387
                             <select name=\"model\" id=\"model\" class=\"custom-select\"></select>
                         </div>
                     </div>
-                    <small id=\"make_model_help\" class=\"d-none form-text\"><mark>Not working? Make sure you disable your ad-blocker for this site.</mark></small>
+                    <small id=\"make_model_help\" class=\"d-none form-text\"><mark>Not working? Check that your ad blocker is disabled for this site.</mark></small>
                 </div>
 
                 <h4>Vehicle ID Number</h4>
@@ -267,7 +265,7 @@ class __TwigTemplate_7fc2d5ebad7d474632e670347a3567d0a19c0004d725ea93a3e97fe3387
             </form>
         </div>
     </div>
-</div>
+
 {% endblock %}", "add.twig.html", "/var/www/templates/add.twig.html");
     }
 }

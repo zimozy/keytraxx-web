@@ -1,25 +1,9 @@
-// $(function () {
-//     // Initialize popovers
-//     $('[data-toggle="popover"]').popover(
-//         {
-//             template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
-//             content: '',
-//             trigger: 'focus',
-//             placement: 'left'
-//         }
-//     )
-// });
-
-
-
-
-$(document).ready(function() {
-
-
-
-    var loggedIn = firebase.auth().currentUser;
-
-    if (loggedIn) {
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+        console.log('Logged in');
+        $('#sign-out').removeClass('d-none');
+        $('#sign-in').addClass('d-none');
+        
         // $('#sign-out-button').removeClass('d-none');
         // $('#sign-in-button').addClass('d-none');
         // // User is signed in.
@@ -32,7 +16,7 @@ $(document).ready(function() {
         // var providerData = user.providerData;
         // user.getIdToken().then(function(accessToken) {
         // document.getElementById('sign-in-status').textContent = 'Signed in';
-        // document.getElementById('sign-in').textContent = 'Sign out';
+        // // document.getElementById('sign-in').textContent = 'Sign out';
         // document.getElementById('account-details').textContent = JSON.stringify({
         //     displayName: displayName,
         //     email: email,
@@ -44,18 +28,24 @@ $(document).ready(function() {
         //     providerData: providerData
         // }, null, '  ');
         // });
-    } else { // not logged in
-        console.log('test');
+  } else {
+        $('#sign-in').removeClass('d-none');
+        $('#sign-out').addClass('d-none');
+        console.log('Not logged in');
         // $('#sign-out-button').addClass('d-none');
         // $('#sign-in-button').removeClass('d-none');
         // User is signed out.
-        document.getElementById('sign-in-status').textContent = 'Signed out';
-        document.getElementById('sign-in').textContent = 'Sign in';
-        document.getElementById('account-details').textContent = 'null';
+        // document.getElementById('sign-in-status').textContent = 'Signed out';
+        // document.getElementById('sign-in').textContent = 'Sign in';
+        // document.getElementById('account-details').textContent = 'null'; 
     }
+});
 
 
-    $('#sign-out-button').click(function() {
+
+
+$(document).ready(function() {
+    $('#sign-out').click(function() {
         firebase.auth().signOut().then(function() {
             console.log('Signed Out');
         }, function(error) {

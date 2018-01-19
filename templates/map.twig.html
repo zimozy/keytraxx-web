@@ -18,7 +18,7 @@
     </style>
 {% endblock %}
 
-{% block navbar %}
+{% block navbar_center %}
     <div class="col-sm-auto">
         <a href="{{path_for('add')}}" class="btn btn-primary" role="button"><i class="fa fa-car" aria-hidden="true"></i> Add Car</a>
     </div>
@@ -28,14 +28,11 @@
 {% endblock %}
 
 {% block content %}
-    {# <div id="map"></div> #}
-        <h1>Welcome to My Awesome App</h1>
-    Status:<div id="sign-in-status"></div>
-    Sign in:<div id="sign-in"></div>
-    Details:<div id="account-details"></div>
+    <div id="map"></div>
 {% endblock %}
 
-{% block scripts %}
+{% block body_script %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAog6OksKldQKb7VFU8ohOA-VRoQuw-Mwg&callback=initMap" async defer></script>
     <script>
         var map;
         function initMap() {
@@ -47,5 +44,4 @@
             });
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAog6OksKldQKb7VFU8ohOA-VRoQuw-Mwg&callback=initMap" async defer></script>
 {% endblock %}

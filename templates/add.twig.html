@@ -2,7 +2,7 @@
 
 {% block title %}Add Car{% endblock %}
 
-{% block head_script %}
+{% block body_script %}
     <script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
 
     <script type="text/javascript">
@@ -14,17 +14,16 @@
                 //carquery.init('2000', 'dodge', 'Viper', 11636);
                 carquery.setFilters( {sold_in_us:true} );
                 carquery.initYearMakeModelTrim('year', 'make', 'model', 'na');
-            }
-            catch(e) {
-                $('#make_model_help').removeClass('d-none');
+            } catch(e) {
+                $('#make_model_help').removeClass('d-none'); //Show a message that they need to disable ad blockers
             }
         });
     </script>
 {% endblock %}
 
-{% block content %}
+{% block content_with_margin %}
 
-<div class="container-fluid">
+
     <div class="row">
         <div class="col-sm-8 offset-2">
             <h1 class="pt-3">Add Car</h1>
@@ -48,7 +47,7 @@
                             <select name="model" id="model" class="custom-select"></select>
                         </div>
                     </div>
-                    <small id="make_model_help" class="d-none form-text"><mark>Not working? Make sure you disable your ad-blocker for this site.</mark></small>
+                    <small id="make_model_help" class="d-none form-text"><mark>Not working? Check that your ad blocker is disabled for this site.</mark></small>
                 </div>
 
                 <h4>Vehicle ID Number</h4>
@@ -85,5 +84,5 @@
             </form>
         </div>
     </div>
-</div>
+
 {% endblock %}

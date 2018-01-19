@@ -12,9 +12,9 @@ class __TwigTemplate_a25d29777d1c1e9ebb09673510db18035be92a7ef1c66ff958f9a74782d
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'head_style' => array($this, 'block_head_style'),
-            'navbar' => array($this, 'block_navbar'),
+            'navbar_center' => array($this, 'block_navbar_center'),
             'content' => array($this, 'block_content'),
-            'scripts' => array($this, 'block_scripts'),
+            'body_script' => array($this, 'block_body_script'),
         );
     }
 
@@ -55,7 +55,7 @@ class __TwigTemplate_a25d29777d1c1e9ebb09673510db18035be92a7ef1c66ff958f9a74782d
     }
 
     // line 21
-    public function block_navbar($context, array $blocks = array())
+    public function block_navbar_center($context, array $blocks = array())
     {
         // line 22
         echo "    <div class=\"col-sm-auto\">
@@ -74,20 +74,16 @@ class __TwigTemplate_a25d29777d1c1e9ebb09673510db18035be92a7ef1c66ff958f9a74782d
     public function block_content($context, array $blocks = array())
     {
         // line 31
-        echo "    ";
-        // line 32
-        echo "        <h1>Welcome to My Awesome App</h1>
-    Status:<div id=\"sign-in-status\"></div>
-    Sign in:<div id=\"sign-in\"></div>
-    Details:<div id=\"account-details\"></div>
+        echo "    <div id=\"map\"></div>
 ";
     }
 
-    // line 38
-    public function block_scripts($context, array $blocks = array())
+    // line 34
+    public function block_body_script($context, array $blocks = array())
     {
-        // line 39
-        echo "    <script>
+        // line 35
+        echo "    <script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyAog6OksKldQKb7VFU8ohOA-VRoQuw-Mwg&callback=initMap\" async defer></script>
+    <script>
         var map;
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
@@ -98,7 +94,6 @@ class __TwigTemplate_a25d29777d1c1e9ebb09673510db18035be92a7ef1c66ff958f9a74782d
             });
         }
     </script>
-    <script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyAog6OksKldQKb7VFU8ohOA-VRoQuw-Mwg&callback=initMap\" async defer></script>
 ";
     }
 
@@ -114,7 +109,7 @@ class __TwigTemplate_a25d29777d1c1e9ebb09673510db18035be92a7ef1c66ff958f9a74782d
 
     public function getDebugInfo()
     {
-        return array (  90 => 39,  87 => 38,  79 => 32,  77 => 31,  74 => 30,  64 => 23,  61 => 22,  58 => 21,  41 => 6,  38 => 5,  32 => 3,  11 => 1,);
+        return array (  85 => 35,  82 => 34,  77 => 31,  74 => 30,  64 => 23,  61 => 22,  58 => 21,  41 => 6,  38 => 5,  32 => 3,  11 => 1,);
     }
 
     public function getSourceContext()
@@ -139,7 +134,7 @@ class __TwigTemplate_a25d29777d1c1e9ebb09673510db18035be92a7ef1c66ff958f9a74782d
     </style>
 {% endblock %}
 
-{% block navbar %}
+{% block navbar_center %}
     <div class=\"col-sm-auto\">
         <a href=\"{{path_for('add')}}\" class=\"btn btn-primary\" role=\"button\"><i class=\"fa fa-car\" aria-hidden=\"true\"></i> Add Car</a>
     </div>
@@ -149,14 +144,11 @@ class __TwigTemplate_a25d29777d1c1e9ebb09673510db18035be92a7ef1c66ff958f9a74782d
 {% endblock %}
 
 {% block content %}
-    {# <div id=\"map\"></div> #}
-        <h1>Welcome to My Awesome App</h1>
-    Status:<div id=\"sign-in-status\"></div>
-    Sign in:<div id=\"sign-in\"></div>
-    Details:<div id=\"account-details\"></div>
+    <div id=\"map\"></div>
 {% endblock %}
 
-{% block scripts %}
+{% block body_script %}
+    <script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyAog6OksKldQKb7VFU8ohOA-VRoQuw-Mwg&callback=initMap\" async defer></script>
     <script>
         var map;
         function initMap() {
@@ -168,7 +160,6 @@ class __TwigTemplate_a25d29777d1c1e9ebb09673510db18035be92a7ef1c66ff958f9a74782d
             });
         }
     </script>
-    <script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyAog6OksKldQKb7VFU8ohOA-VRoQuw-Mwg&callback=initMap\" async defer></script>
 {% endblock %}", "map.twig.html", "/var/www/templates/map.twig.html");
     }
 }

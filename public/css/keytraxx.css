@@ -1,6 +1,13 @@
+html, body {
+    height: 100%;
+}
+
+
 div#navbar {
-    padding: 15px 15px 15px 30px;
-    background-color: #f0f0f0;
+    /* padding: 15px 15px 15px 30px; */
+    background-color: rgba(255, 255, 255, 0.9);
+    /* position: absolute; */
+    border-bottom: 1px solid rgb(233, 236, 239);
 }
 /* 
 div#navbar * {

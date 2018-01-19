@@ -5,81 +5,60 @@
     {# META #}
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %} | KeyTraxx</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    {# <meta name="description" content="KeyTraxx"> #}
+    {# <meta name="author" content="KeyTraxx"> #}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="">
+    {# <link rel="icon" type="image/png" href=""> #}
     
     {# CSS #}
     {% block head_style %}{% endblock %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">{# BOOTSTRAP #}
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
     <link rel="stylesheet" href="css/keytraxx.css">
     
-    {# JS #}
-    {# jQuery #}<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    {# Popper (must go before Bootstrap) #}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    {# Bootstrap #}<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-    {# Firebase #}
-    <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
-    <script src="js/firebase_init.js"></script>
-    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
-    <script src="js/firebase_ui_init.js"></script>
-    <script src="js/keytraxx.js"></script>
     {% block head_script %}{% endblock %}
 </head>
 
-<body>
-    {# NAVIGATION BAR #}
-    <div class="container-fluid p-0">
-        <div id="navbar">
-            <div class="row">
-
-
-                <div class="col-sm-auto">
-                        <h3 class="navbarH">KeyTraxx</h3>
-                </div>
-
-                {% block navbar %}{% endblock %}
-                
-                <div class="col-sm-auto">
-                    <a href="{{path_for('login')}}" id="sign-in-link" tabindex="0" class="btn btn-outline-dark" role="button" data-toggle="popover" title="Sign In" >Dismissible popover</a>
-
-                    {# <button id="sign-in-button" type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalCenter">Sign In</button>
-
-                    <button id="sign-out-button" type="button" class="btn btn-outline-dark d-none">Sign Out</button> #}
-                </div>
-
-
-                <!-- Modal -->
-                {# <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Sign In</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div id="sign-in-container"></div>
-                            </div>
-                            {# <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div> 
+<body class="h-100">
+    <div class="container-fluid h-100">
+        <div class="row">
+            <div class="col">
+                {# NAVIGATION BAR #}
+                <div id="navbar" class="py-3 pr-3 pl-2">
+                    <div class="row">
+                        
+                        {# LOGO #}
+                        <div class="col-sm-auto">
+                                <h3 class="navbarH"><a href="{{path_for('map')}}" class="text-dark">KeyTraxx</a></h3>
                         </div>
-                    </div>
-                </div> #}
 
+                        {# CENTER CONTENT #}
+                        {% block navbar_center %}
+                            <div class="col"></div>
+                        {% endblock %}
+                        
+                        {# LOGIN BUTTON #}
+                        {% block navbar_login %}
+                            <div class="col-sm-auto">
+                                <a id="sign-in" href="{{path_for('login')}}" class="btn btn-outline-dark d-none" role="button">Sign In</a>
+                                <button id="sign-out" class="btn btn-outline-dark d-none">Sign Out</button>
+                            </div>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row h-100">
+            <div class="col">
+                {# MAIN CONTENT #}
+                {% block content %}
+                    {# <div class=""> #}
+                        {% block content_with_margin %}{% endblock %}
+                    {# </div> #}
+                {% endblock %}
             </div>
         </div>
     </div>
-
-    {# MAIN PAGE CONTENT #}
-    {% block content %}{% endblock %}
 
     {# <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-auth.js"></script> #}
@@ -103,9 +82,20 @@
 
     {# <script src="js/firebase.js"></script> #}
 
+    {# jQuery #}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    {# Bootstrap #}
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    
+    {# Firebase #}
+    <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+    <script src="js/firebase_init.js"></script>
+
+    {# Our Javascript #}
     <script src="js/keytraxx.js"></script>
 
-    {% block scripts %}{% endblock %}
+    {% block body_script %}{% endblock %}
 
 </body>
 
