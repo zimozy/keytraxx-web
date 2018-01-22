@@ -20,45 +20,47 @@
 </head>
 
 <body class="h-100">
-    <div class="container-fluid h-100">
-        <div class="row">
-            <div class="col">
-                {# NAVIGATION BAR #}
-                <div id="navbar" class="py-3 pr-3 pl-2">
-                    <div class="row">
-                        
-                        {# LOGO #}
-                        <div class="col-sm-auto">
-                                <h3 class="navbarH"><a href="{{path_for('map')}}" class="text-dark">KeyTraxx</a></h3>
-                        </div>
-
-                        {# CENTER CONTENT #}
-                        {% block navbar_center %}
-                            <div class="col"></div>
-                        {% endblock %}
-                        
-                        {# LOGIN BUTTON #}
-                        {% block navbar_login %}
+        {% block navbar %}
+            {# <div class="row">
+                <div class="col"> #}
+                    {# NAVIGATION BAR #}
+                    <div id="navbar" class="py-3 pr-3 pl-2">
+                        <div class="row">
+                            
+                            {# LOGO #}
                             <div class="col-sm-auto">
-                                <a id="sign-in" href="{{path_for('login')}}" class="btn btn-outline-dark d-none" role="button">Sign In</a>
-                                <button id="sign-out" class="btn btn-outline-dark d-none">Sign Out</button>
+                                    <h3 class="navbarH"><a href="{{path_for('map')}}" class="text-dark">KeyTraxx</a></h3>
                             </div>
-                        {% endblock %}
+
+                            {# CENTER CONTENT #}
+                            {% block navbar_center %}
+                                <div class="col"></div>
+                            {% endblock %}
+                            
+                            {# LOGIN BUTTON #}
+                            {% block navbar_login %}
+                                <div class="col-sm-auto">
+                                    {# <a id="sign-in" href="{{path_for('login')}}" class="btn btn-outline-dark d-none" role="button">Sign In</a> #}
+                                    <a id="sign-out" href="{{path_for('login')}}" class="h-100">Sign Out</a>
+                                </div>
+                            {% endblock %}
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                {# </div>
+            </div> #}
+        {% endblock %}
+    {# <div class="container-fluid h-100">
         <div class="row h-100">
-            <div class="col">
+            <div class="col"> #}
                 {# MAIN CONTENT #}
                 {% block content %}
                     {# <div class=""> #}
                         {% block content_with_margin %}{% endblock %}
                     {# </div> #}
                 {% endblock %}
-            </div>
+            {# </div>
         </div>
-    </div>
+    </div> #}
 
     {# <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-auth.js"></script> #}

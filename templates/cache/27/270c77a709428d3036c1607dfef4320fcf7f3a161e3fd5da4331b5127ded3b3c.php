@@ -10,6 +10,7 @@ class __TwigTemplate_dd6c01ae4435301732aaf1e8ef306e5305417329361c8aa9df08bc879d1
         // line 1
         $this->parent = $this->loadTemplate("base.twig.html", "login.twig.html", 1);
         $this->blocks = array(
+            'navbar' => array($this, 'block_navbar'),
             'head_style' => array($this, 'block_head_style'),
             'body_script' => array($this, 'block_body_script'),
             'title' => array($this, 'block_title'),
@@ -29,41 +30,53 @@ class __TwigTemplate_dd6c01ae4435301732aaf1e8ef306e5305417329361c8aa9df08bc879d1
     }
 
     // line 3
+    public function block_navbar($context, array $blocks = array())
+    {
+    }
+
+    // line 5
     public function block_head_style($context, array $blocks = array())
     {
-        // line 4
+        // line 6
         echo "    <link type=\"text/css\" rel=\"stylesheet\" href=\"https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css\" />
 ";
     }
 
-    // line 7
+    // line 9
     public function block_body_script($context, array $blocks = array())
     {
-        // line 8
+        // line 10
         echo "    <script src=\"https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js\"></script>
     <script src=\"js/firebase_ui_init.js\"></script>
 ";
     }
 
-    // line 12
+    // line 14
     public function block_title($context, array $blocks = array())
     {
         echo "Sign In";
     }
 
-    // line 14
+    // line 16
     public function block_navbar_login($context, array $blocks = array())
     {
     }
 
-    // line 16
+    // line 18
     public function block_content_with_margin($context, array $blocks = array())
     {
-        // line 18
-        echo "<div class=\"container-fluid h-100\">
-    <div class=\"row align-items-center h-100\">
+        // line 20
+        echo "<div class=\"container-fluid text-center\">
+    <div class=\"row\">
         <div class=\"col\">
-            <div id=\"sign-in-container\"></div>
+            <br>
+            <h2>KeyTraxx</h2>
+        </div>
+    </div>
+    <div class=\"row align-items-center\" style=\"margin-top:50px;\">
+        <div class=\"col text-center\">
+            <h1 class=\"display-3\">Welcome.</h1>
+            <div id=\"sign-in-container\" style=\"margin-top:25px;\"></div>
         </div>
     </div>
 </div>
@@ -82,12 +95,14 @@ class __TwigTemplate_dd6c01ae4435301732aaf1e8ef306e5305417329361c8aa9df08bc879d1
 
     public function getDebugInfo()
     {
-        return array (  63 => 18,  60 => 16,  55 => 14,  49 => 12,  43 => 8,  40 => 7,  35 => 4,  32 => 3,  11 => 1,);
+        return array (  69 => 20,  66 => 18,  61 => 16,  55 => 14,  49 => 10,  46 => 9,  41 => 6,  38 => 5,  33 => 3,  11 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Twig_Source("{% extends 'base.twig.html' %}
+
+{% block navbar %}{% endblock %}
 
 {% block head_style %}
     <link type=\"text/css\" rel=\"stylesheet\" href=\"https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css\" />
@@ -104,10 +119,17 @@ class __TwigTemplate_dd6c01ae4435301732aaf1e8ef306e5305417329361c8aa9df08bc879d1
 
 {% block content_with_margin %}
 {# VERTICALLY ALIGNED ROW #}
-<div class=\"container-fluid h-100\">
-    <div class=\"row align-items-center h-100\">
+<div class=\"container-fluid text-center\">
+    <div class=\"row\">
         <div class=\"col\">
-            <div id=\"sign-in-container\"></div>
+            <br>
+            <h2>KeyTraxx</h2>
+        </div>
+    </div>
+    <div class=\"row align-items-center\" style=\"margin-top:50px;\">
+        <div class=\"col text-center\">
+            <h1 class=\"display-3\">Welcome.</h1>
+            <div id=\"sign-in-container\" style=\"margin-top:25px;\"></div>
         </div>
     </div>
 </div>

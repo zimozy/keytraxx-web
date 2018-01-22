@@ -1,8 +1,8 @@
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
         console.log('Logged in');
-        $('#sign-out').removeClass('d-none');
-        $('#sign-in').addClass('d-none');
+        // $('#sign-out').removeClass('d-none');
+        // $('#sign-in').addClass('d-none');
         
         // $('#sign-out-button').removeClass('d-none');
         // $('#sign-in-button').addClass('d-none');
@@ -29,8 +29,8 @@ firebase.auth().onAuthStateChanged(function(user) {
         // }, null, '  ');
         // });
   } else {
-        $('#sign-in').removeClass('d-none');
-        $('#sign-out').addClass('d-none');
+        // $('#sign-in').removeClass('d-none');
+        // $('#sign-out').addClass('d-none');
         console.log('Not logged in');
         // $('#sign-out-button').addClass('d-none');
         // $('#sign-in-button').removeClass('d-none');

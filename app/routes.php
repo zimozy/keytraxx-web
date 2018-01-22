@@ -29,6 +29,8 @@ $app->post("/add", function (Request $request, Response $response) {
     $fields = $request->getParsedBody();
     $photo_file = $request->getUploadedFiles()[0];
 
+    $price = str_replace(',', '', $fields['price']);  // Remove commas so they can be used but don't trigger the validation and don't get stored in the DB
+
     // VALIDATION FUNCTION
     function validate(&$fields, $field_name, $valid, $error_name) {
         if (!$valid) {
@@ -63,7 +65,7 @@ $app->post("/add", function (Request $request, Response $response) {
     validate($fields,
         'price',
         respect::optional(respect::numeric())
-            ->validate(str_replace(',', '', $fields['price'])), //ignore  commas
+            ->validate($price), //ignore  commas
         'invalid');
     
     validate($fields,

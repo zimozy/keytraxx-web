@@ -5,9 +5,13 @@ html, body {
 
 div#navbar {
     /* padding: 15px 15px 15px 30px; */
+    width: 100%;
+    position: absolute;
+    z-index: 100;
+
     background-color: rgba(255, 255, 255, 0.9);
-    /* position: absolute; */
-    border-bottom: 1px solid rgb(233, 236, 239);
+    /* border-bottom: 1px solid ; */
+    box-shadow: 0px 0px 6px rgba(0,0,0,0.2) ;
 }
 /* 
 div#navbar * {
