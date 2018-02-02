@@ -38,7 +38,7 @@ $app->post("/add", function (Request $request, Response $response) {
             $fields['errors'][$field_name][$error_name] = true;
         }
     }
-    
+
 
     //  VALIDATION  //
 
@@ -101,7 +101,7 @@ $app->post("/add", function (Request $request, Response $response) {
         );
         $dateTime = new DateTime();
 
-        var_dump($firebase->push('cars/', $data));
+        var_dump($firebase->push('dealerships/-L41B0ttFgQBsE41-111/cars', $data));
 
 // var_dump(FIREBASE_PATH);
 // $dateTime = new DateTime();
